@@ -105,7 +105,15 @@ function showsOfNeedCinema(id, shows) {
 };
 // Обработка информации о залах:
 // Используя метод forEach, выведите информацию о каждом зале для заданного кинотеатра.
-//                 ????????????????? -                        -??????????
+//-----первый вариант---
+function aboutHallsNew(cinemas,id=1){
+  const needCinema = cinemas.find(cinema => cinema.id === id);
+  needCinema.halls.forEach(hall => {
+    console.log (`В кинотеатре ${needCinema.name}: ${hall.name} вместительностью ${hall.capacity}`)
+  });
+};
+aboutHallsNew(cinemas)
+//------второй вариант---
 function aboutHalls(cinemas, id = 1) {
   const needCinema = cinemas.find(cinema => cinema.id === id)
   return `В кинотеатре ${needCinema.name} eсть залы: ${needCinema.halls.map(hall => `${hall.name} вместительностью ${hall.capacity}`)}`
