@@ -100,19 +100,21 @@ const shows = [
 // Шаг 3: Задачи для выполнения
 // Фильтрация представлений по кинотеатру:
 // Напишите функцию, которая принимает id кинотеатра и массив представлений, и возвращает все представления для этого кинотеатра.
-function showsOfNeedCinema(id, shows) {
-  return shows.filter(cinema => id === cinema.hallId)
+function showsOfNeedCinema(idCinema, shows, cinemas) {
+  const needHalls = cinemas.find(cinema => idCinema === cinema.id).halls;
+  return shows.filter(show => needHalls.map(hall => hall.id).includes(show.hallId))
 };
+console.log(showsOfNeedCinema(3, shows, cinemas))
 // Обработка информации о залах:
 // Используя метод forEach, выведите информацию о каждом зале для заданного кинотеатра.
 //-----первый вариант---
-function aboutHallsNew(cinemas,id=1){
+function aboutHallsNew(cinemas, id = 1) {
   const needCinema = cinemas.find(cinema => cinema.id === id);
   needCinema.halls.forEach(hall => {
-    console.log (`В кинотеатре ${needCinema.name}: ${hall.name} вместительностью ${hall.capacity}`)
+    console.log(`В кинотеатре ${needCinema.name}: ${hall.name} вместительностью ${hall.capacity}`)
   });
 };
-aboutHallsNew(cinemas)
+// aboutHallsNew(cinemas)
 //------второй вариант---
 function aboutHalls(cinemas, id = 1) {
   const needCinema = cinemas.find(cinema => cinema.id === id)
